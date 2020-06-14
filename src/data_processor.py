@@ -11,7 +11,6 @@ import datetime as dt
 import matplotlib.pyplot as plt
 import easygui
 import pandas as pd
-import os
 
 #from tools.cop_plot import water_balance as wb_plot
 
@@ -24,11 +23,7 @@ plt.rcParams['axes.edgecolor']='#333F4B'
 plt.rcParams['axes.linewidth']=0.8
 plt.rcParams['xtick.color']='#333F4B'
 plt.rcParams['ytick.color']='#333F4B'
-from matplotlib import font_manager as fm, rcParams
 
-fpath = os.path.join(plt.rcParams["datapath"], 
-                     r'D:\Users\GNOS\Documents\fonts\Muli-VariableFont_wght.ttf')
-prop = fm.FontProperties(fname=fpath)
 
 
 class DataProc:
@@ -977,7 +972,7 @@ class WatBal:
                 values[0] = values[-2]
                 values[-1] = values[1]
                 plt.plot(month_list, values, label=src, marker = '|', linewidth = 2)
-                plt.xlabel("Month",FontProperties = prop, 
+                plt.xlabel("Month",
                        color = '#4d4d4d')
                 plt.xlim(0.5,12.5)
                 #plt.ylim((-55,140))
@@ -993,15 +988,15 @@ class WatBal:
             self.data.plot(figsize=(12,8))
             plt.xlabel("Date")
         
-        plt.title(title,FontProperties = prop, 
+        plt.title(title,
                        fontsize=18)
-        plt.legend(prop=prop, bbox_to_anchor= (1.04, 1), loc = 'upper left')        
-        plt.ylabel(f"Water quantity ({self.unit})",FontProperties = prop, 
+        plt.legend( bbox_to_anchor= (1.04, 1), loc = 'upper left')        
+        plt.ylabel(f"Water quantity ({self.unit})",
                        color = '#4d4d4d')
         plt.grid(axis='y', linestyle = ':', linewidth=1)
-        plt.xticks(FontProperties = prop, 
+        plt.xticks(
                        color = '#4d4d4d')
-        plt.yticks(FontProperties = prop, 
+        plt.yticks(
                        color = '#4d4d4d')
         plt.axhline(0, color = '#4d4d4d')
         plt.tight_layout()
@@ -1047,7 +1042,7 @@ class WatBal:
                  marker = '|',
                  markersize = 10,
                  markeredgewidth = 1.7)
-        plt.xlabel("Month",FontProperties = prop, 
+        plt.xlabel("Month",
                        color = '#4d4d4d')
         
         plt.fill_between(month_list, pot_evap, 
@@ -1064,14 +1059,14 @@ class WatBal:
                          facecolor= 'lightseagreen',
                          label= 'Groundwater recharge')
         
-        plt.title(title,FontProperties = prop,fontsize = 14)
-        plt.legend(prop=prop)        
-        plt.ylabel(f"Water flux ({self.unit})",FontProperties = prop, 
+        plt.title(title,fontsize = 14)
+        plt.legend()        
+        plt.ylabel(f"Water flux ({self.unit})",
                        color = '#4d4d4d')
         plt.grid(axis='y')
         plt.xlim(0.5,12.5)
-        plt.xticks(FontProperties = prop, color = '#4d4d4d')
-        plt.yticks(FontProperties = prop, color = '#4d4d4d')
+        plt.xticks(color = '#4d4d4d')
+        plt.yticks(color = '#4d4d4d')
     
         
         if save_fig:
@@ -1218,23 +1213,23 @@ class WatBal:
             # Plot the limits
             plt.plot([0,1],[0,1], 'darkgrey')
             plt.plot([1,max_x],[1,1], 'darkgrey')
-            plt.text((max_x-1)/2+0.9, 1.02, "Water limit",FontProperties = prop)
-            plt.text(0.45, 0.66, "Energy limit", rotation=45,FontProperties = prop)
+            plt.text((max_x-1)/2+0.9, 1.02, "Water limit")
+            plt.text(0.45, 0.66, "Energy limit", rotation=45)
             plt.axis('scaled')
             plt.xlim([0,max_x])
             plt.ylim([0,1.15])
-            plt.xlabel(r"Aridity index "+r"($E_p/P$)",FontProperties = prop, 
+            plt.xlabel(r"Aridity index "+r"($E_p/P$)",
                        color = '#4d4d4d')
-            plt.ylabel(r"Evaporation index "+ r"($E_a/P$)",FontProperties = prop, 
+            plt.ylabel(r"Evaporation index "+ r"($E_a/P$)",
                        color = '#4d4d4d')
-            plt.title(title, FontProperties = prop, fontsize = 14)
+            plt.title(title, fontsize = 14)
             
             plt.xticks(color = '#4d4d4d')
             plt.yticks(color = '#4d4d4d')
             
 
             plt.scatter([xval], [yval], marker="D")
-            plt.text(xval+0.02, yval-0.04, "Catchment",FontProperties = prop)
+            plt.text(xval+0.02, yval-0.04, "Catchment")
             plt.grid(which='major', axis='both', color='darkgrey',
              linestyle='dashdot', linewidth=0.3)
             

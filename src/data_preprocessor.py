@@ -51,7 +51,7 @@ class DataPreProc:
     load_from_gui()
        Load a data source from a basic GUI
     
-    load_from_name_and_path(path, name, data_type='WDOD', parameters=None)
+    load_from_name_and_path(path, name, data_type='dtype2', parameters=None)
        Load a file with a given path and name. Saves it in object
  
     load_multiple_from_gui(n)
@@ -80,11 +80,11 @@ class DataPreProc:
         
         data_type = easygui.buttonbox(msg="Choose a data type",
                                       title="Data type",
-                                      choices=("WDOD", "KNMI_hourly", "KNMI_daily"))
+                                      choices=("dtype2", "KNMI_hourly", "KNMI_daily"))
         self.load_from_name_and_path(path, name, data_type=data_type)
         
 
-    def load_from_name_and_path(self, path, name, data_type='WDOD', parameters=None,
+    def load_from_name_and_path(self, path, name, data_type='dtype2', parameters=None,
                                 lentest = False,
                                 lenmin = 10):
         """ Load a file with a given path and name. Saves it in object
@@ -109,8 +109,8 @@ class DataPreProc:
         
         
         """
-        if data_type.lower() == 'wdod':
-            new_data = self._get_wdod_file(path)
+        if data_type.lower() == 'dtype2':
+            new_data = self._get_dtype2_file(path)
         elif data_type.lower() == 'knmi_hourly':
             print(path)
             new_data = self._get_knmi_file(path, parameters)
@@ -165,8 +165,8 @@ class DataPreProc:
         
         return new_data
     
-    def _get_wdod_file(self, path):
-        """Load a .csv file from WDOD
+    def _get_dtype2_file(self, path):
+        """Load a .csv file from dtype2
         
         Parameters
         ----------
