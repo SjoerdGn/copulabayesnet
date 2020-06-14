@@ -10,8 +10,9 @@ requirements = ['numpy>=1.16.0',
                 'matplotlib', 
                 'scikit-gof',
                 'hydroeval',
-                'easygui',
-                'biokit']
+                #'biokit', biokit does not work right now
+                'easygui'
+                ]
 
 setup(name='copulabayesnet', 
       author='Sjoerd Gnodde',

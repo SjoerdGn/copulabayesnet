@@ -6,13 +6,11 @@ Created on 5-12-2019
 """
 
 import matplotlib.pyplot as plt
-import sys
 import matplotlib.animation as manimation
 
-from biokit.viz.scatter import ScatterHist
-from biokit.viz import corrplot
+#from biokit.viz.scatter import ScatterHist # biokit is not working right now
+#from biokit.viz import corrplot
 import numpy as np
-import pandas as pd
 
 from pycopula.visualization import pdf_2d, cdf_2d
 #from tools.bncopula import Copula2d
@@ -382,97 +380,97 @@ def different_cop_video(x, y, level,
                 plt.savefig(save_path, dpi=200)   
 
 
-def corr_diag(data, method='square', enrc = False, fontsize='medium', order=False,
-              title='Correlation diagram', own_data = None,
-              save_fig=False,
-              save_path= '../figures/correlation_diagram.png'):
-    """Plot a correlation diagram:
-        All parameters are plotted on the x-axis and the y-axis
+# def corr_diag(data, method='square', enrc = False, fontsize='medium', order=False,
+#               title='Correlation diagram', own_data = None,
+#               save_fig=False,
+#               save_path= '../figures/correlation_diagram.png'):
+#     """Plot a correlation diagram:
+#         All parameters are plotted on the x-axis and the y-axis
         
         
-    Parameters
-    ----------
-    data : pandas.DataFrame
-        Dataframe with the variables
+#     Parameters
+#     ----------
+#     data : pandas.DataFrame
+#         Dataframe with the variables
         
-    enrc : bool (optional)
-        Calculate empirical normal rank correlation
+#     enrc : bool (optional)
+#         Calculate empirical normal rank correlation
     
-    method : str (optional)
-        Default value: 'square'
-        The way it is plotted. Just try them to see what they do.   
-        Possibilities:
-        'ellipse', 'square', 'rectangle', 
-        'color', 'circle', 'number', 'text', 'pie'
+#     method : str (optional)
+#         Default value: 'square'
+#         The way it is plotted. Just try them to see what they do.   
+#         Possibilities:
+#         'ellipse', 'square', 'rectangle', 
+#         'color', 'circle', 'number', 'text', 'pie'
         
-    fontsize : str (optional)
-        The fontsize of the text around it. Either, 'small',
-        'medium' or 'large'. Default value: 'medium'. 
+#     fontsize : str (optional)
+#         The fontsize of the text around it. Either, 'small',
+#         'medium' or 'large'. Default value: 'medium'. 
         
-    order : bool (optional)
-        Here, the code behind it makes a nice order to group variables
-        with a high correlation. Default value = False because it 
-        is not always practical. 
-    """
-    cp = corrplot.Corrplot(data)
-    if own_data is not None:
-        cp.df = own_data
-    elif enrc:
-        enrcmatrix = pd.DataFrame(columns = data.columns, index = data.columns)
-        for var1 in data.columns:
-            for var2 in data.columns:
-                c2d = Copula2d(data[var1].values, data[var2].values)
-                enrc = c2d.emp_norm_rank_corr()
-                enrcmatrix[var1][var2] = enrc
-        cp.df = enrcmatrix
-    cp.plot(method=method, fontsize=fontsize, order=order)
-    plt.title(title, fontsize = 20)
-    if save_fig:
-        plt.savefig(save_path, dpi=200, bbox_inches = "tight")
+#     order : bool (optional)
+#         Here, the code behind it makes a nice order to group variables
+#         with a high correlation. Default value = False because it 
+#         is not always practical. 
+#     """
+#     cp = corrplot.Corrplot(data)
+#     if own_data is not None:
+#         cp.df = own_data
+#     elif enrc:
+#         enrcmatrix = pd.DataFrame(columns = data.columns, index = data.columns)
+#         for var1 in data.columns:
+#             for var2 in data.columns:
+#                 c2d = Copula2d(data[var1].values, data[var2].values)
+#                 enrc = c2d.emp_norm_rank_corr()
+#                 enrcmatrix[var1][var2] = enrc
+#         cp.df = enrcmatrix
+#     cp.plot(method=method, fontsize=fontsize, order=order)
+#     plt.title(title, fontsize = 20)
+#     if save_fig:
+#         plt.savefig(save_path, dpi=200, bbox_inches = "tight")
         
 
-def scatter_hist(data,
-                 name_x = 'x',
-                 name_y = 'y',
-        kargs_scatter={'s':10, 'c':'b'},
-        kargs_grids={},
-        kargs_histx={},
-        kargs_histy={},
-        scatter_position='bottom left',
-        width=.5,
-        height=.5,
-        offset_x=.10,
-        offset_y=.10,
-        gap=0.06,
-        facecolor='lightgrey',
-        grid=True,
-        show_labels=True,
-        **kargs):
-    """ Make a scatterplot of two parameters with a histogram of the margins
+# def scatter_hist(data,
+#                  name_x = 'x',
+#                  name_y = 'y',
+#         kargs_scatter={'s':10, 'c':'b'},
+#         kargs_grids={},
+#         kargs_histx={},
+#         kargs_histy={},
+#         scatter_position='bottom left',
+#         width=.5,
+#         height=.5,
+#         offset_x=.10,
+#         offset_y=.10,
+#         gap=0.06,
+#         facecolor='lightgrey',
+#         grid=True,
+#         show_labels=True,
+#         **kargs):
+#     """ Make a scatterplot of two parameters with a histogram of the margins
     
-    Parameters
-    ----------
-    data : numpy.array or pandas.DataFrame
-        The data
-    """
-    if not isinstance(data, pd.DataFrame):
-        data = pd.DataFrame({name_x: data[0], name_y: data[1]})
-    sh = ScatterHist(data)
-    plt.figure(figsize = (12,10))
-    sh.plot(kargs_scatter=kargs_scatter,
-        kargs_grids=kargs_grids,
-        kargs_histx=kargs_histx,
-        kargs_histy=kargs_histy,
-        scatter_position=scatter_position,
-        width=width,
-        height=height,
-        offset_x=offset_x,
-        offset_y=offset_y,
-        gap=gap,
-        facecolor=facecolor,
-        grid=grid,
-        show_labels=show_labels,
-        **kargs)
+#     Parameters
+#     ----------
+#     data : numpy.array or pandas.DataFrame
+#         The data
+#     """
+#     if not isinstance(data, pd.DataFrame):
+#         data = pd.DataFrame({name_x: data[0], name_y: data[1]})
+#     sh = ScatterHist(data)
+#     plt.figure(figsize = (12,10))
+#     sh.plot(kargs_scatter=kargs_scatter,
+#         kargs_grids=kargs_grids,
+#         kargs_histx=kargs_histx,
+#         kargs_histy=kargs_histy,
+#         scatter_position=scatter_position,
+#         width=width,
+#         height=height,
+#         offset_x=offset_x,
+#         offset_y=offset_y,
+#         gap=gap,
+#         facecolor=facecolor,
+#         grid=grid,
+#         show_labels=show_labels,
+#         **kargs)
     
 
 def pred_target(pred, target, 
