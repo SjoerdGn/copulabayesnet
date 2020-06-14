@@ -18,50 +18,37 @@ Note: change d = copula.getDimension() to d = copula.dimension() and
 A small part of the code is copied from https://github.com/blent-ai/pycopula
      
 """
-import os
 from scipy import interpolate
 from mpl_toolkits.mplot3d.axes3d import Axes3D
 
 import scipy as sp  
 import numpy as np
-import numpy.ma as ma
 from statsmodels.distributions.empirical_distribution import ECDF
 from pycopula.copula import GaussianCopula
 from pycopula.simulation import simulate
 import time
 from skgof import ks_test, cvm_test, ad_test
 
-from scipy.stats import norm, uniform, gumbel_r, gumbel_l, shapiro, normaltest, anderson, rankdata
+from scipy.stats import norm, uniform, gumbel_r, gumbel_l, shapiro, normaltest, rankdata
 import matplotlib.pyplot as plt
 from statsmodels.tsa.stattools import acf
 
-from pycopula import archimedean_generators as generators
-from pycopula import math_misc
-from pycopula.math_misc import multivariate_t_distribution
-from pycopula  import estimation
-from pycopula.simulation import simulate
+from pycopula import math_misc, estimation
 from pycopula.copula import ArchimedeanCopula 
 
-from matplotlib import font_manager as fm, rcParams
 
-fpath = os.path.join(plt.rcParams["datapath"], 
-                     r'D:\Users\GNOS\Documents\fonts\Muli-VariableFont_wght.ttf')
-prop = fm.FontProperties(fname=fpath)
 
 plt.rc('figure', titlesize=20) 
-hfont = {'fontname':r'D:\Users\GNOS\Documents\fonts\Muli-VariableFont_wght.ttf'}
+
 import hydroeval as he
 
 from sklearn.model_selection import train_test_split
 
 import tools.cop_plot as cp
 
-
 from scipy.stats import multivariate_normal as mvn
+from scipy.linalg import cholesky, curve_fit
 
-from scipy.linalg import sqrtm
-from numpy.linalg import inv, cholesky
-from scipy.optimize import curve_fit, bisect
         
 class Gof1d:
     
@@ -1013,11 +1000,11 @@ class Gof2d:
                 if gridlines:
                     plt.tricontour(rank_x/tot, rank_y/tot, diff_point_val, levels = levels, colors='k',linewidths=0.5)
                 trc = plt.tricontourf(rank_x/tot, rank_y/tot, diff_point_val, levels = levels, cmap="RdBu_r")
-                plt.title(plot_title, FontProperties=prop,  fontsize = 18, pad = 20)
-                plt.xlabel(x_name, FontProperties=prop,  color = '#4d4d4d', fontsize = 14)
-                plt.ylabel(y_name, FontProperties=prop,  color = '#4d4d4d', fontsize = 14)
-                plt.xticks(FontProperties=prop,  color = '#4d4d4d', fontsize = 14)
-                plt.yticks(FontProperties=prop,  color = '#4d4d4d', fontsize = 14)
+                plt.title(plot_title,   fontsize = 18, pad = 20)
+                plt.xlabel(x_name,   color = '#4d4d4d', fontsize = 14)
+                plt.ylabel(y_name,   color = '#4d4d4d', fontsize = 14)
+                plt.xticks(  color = '#4d4d4d', fontsize = 14)
+                plt.yticks( color = '#4d4d4d', fontsize = 14)
                 plt.colorbar(trc)
                 plt.grid(which='major', axis='both', color='darkgrey',
                          linestyle='dashdot', linewidth=0.3)
