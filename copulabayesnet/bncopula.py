@@ -37,18 +37,17 @@ from pycopula import math_misc, estimation
 from pycopula.copula import ArchimedeanCopula 
 
 
-
 plt.rc('figure', titlesize=20) 
 
 import hydroeval as he
 
 from sklearn.model_selection import train_test_split
 
-import tools.cop_plot as cp
+from copulabayesnet import cop_plot as cp
 
 from scipy.stats import multivariate_normal as mvn
-from scipy.linalg import cholesky, curve_fit
-
+from scipy.linalg import cholesky
+from scipy.optimize import curve_fit
         
 class Gof1d:
     
