@@ -14,7 +14,6 @@ requirements = ['numpy>=1.16.0',
                 'biokit']
 
 setup(name='copulabayesnet', 
-      packages = ['copulabayesnet'],
       author='Sjoerd Gnodde',
       author_email='',
       license='MIT',
