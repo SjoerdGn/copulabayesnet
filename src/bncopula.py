@@ -2,7 +2,7 @@
 """
 Created on Mon Nov  4 15:26:59 2019
 
-@author: GNOS
+@author: Sjoerd Gnodde
 
 
 

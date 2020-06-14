@@ -4,7 +4,7 @@ Created on Thu Nov 28 15:08:34 2019
 
 Taking montly maxima, averages, selecting data prior to 
 
-@author: GNOS
+@author: Sjoerd Gnodde
 """
 import numpy as np
 import datetime as dt

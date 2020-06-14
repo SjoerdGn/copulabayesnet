@@ -4,7 +4,7 @@ Created on Thu Nov 28 15:11:19 2019
 
 Filtering, testing water balance 
 
-@author: GNOS
+@author: Sjoerd Gnodde
 """
 import easygui
 import pandas as pd

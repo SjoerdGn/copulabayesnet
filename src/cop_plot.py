@@ -2,15 +2,11 @@
 """
 Created on 5-12-2019
 
-@author: GNOS
+@author: Sjoerd Gnodde
 """
-import os
+
 import matplotlib.pyplot as plt
 import sys
-sys.path.append("..\\..\\biokit-master")
-sys.path.append("../biokit-master")
-sys.path.append("biokit-master")
-sys.path.append(r"D:\Users\GNOS\Documents\114045\WIP\biokit-master")
 import matplotlib.animation as manimation
 
 from biokit.viz.scatter import ScatterHist
@@ -26,10 +22,7 @@ import datetime as dt
 metadata = dict(title='Copula', artist='Sjoerd Gnodde',
                 comment='Enjoy!')
 import matplotlib
-from matplotlib import font_manager as fm, rcParams
-fpath = os.path.join(plt.rcParams["datapath"], 
-                     r'D:\Users\GNOS\Documents\fonts\Muli-VariableFont_wght.ttf')
-prop = fm.FontProperties(fname=fpath)
+
 
 def cop_2_param(Copula2d,
                 type_copula = "pdf",
@@ -214,12 +207,12 @@ def different_cop(x, y, level,
         level[level > zclip] = zclip
         ax.plot_surface(x,y,level,cmap=cm.coolwarm)
         plt.tight_layout()
-        #ax.set_zticklabels((), FontProperties = prop, color = '#4d4d4d', fontsize = 14)
+        #ax.set_zticklabels((),  color = '#4d4d4d', fontsize = 14)
         if type_copula.lower() == "pdf":
             ax.set_zlim(0,zclip)
-            ax.set_zlabel("Probability (p)", FontProperties = prop, color = '#4d4d4d', fontsize = 14)
+            ax.set_zlabel("Probability (p)",  color = '#4d4d4d', fontsize = 14)
         elif type_copula.lower() == "cdf":
-            ax.set_zlabel("Cumulative probability", FontProperties = prop, color = '#4d4d4d', fontsize = 14)
+            ax.set_zlabel("Cumulative probability",  color = '#4d4d4d', fontsize = 14)
         ax.w_zaxis.set_pane_color((250/255, 250/255, 250/255))
         ax.w_yaxis.set_pane_color((225/255, 225/255, 225/255))
         ax.w_xaxis.set_pane_color((190/255, 190/255, 190/255))
@@ -241,21 +234,21 @@ def different_cop(x, y, level,
 
         if type_copula.lower() == "pdf":
             cbar.set_label("Probability (p)", rotation=270, labelpad = 20,
-                           FontProperties = prop, color = '#4d4d4d', fontsize = 14)
+                            color = '#4d4d4d', fontsize = 14)
         elif type_copula.lower() == "cdf":
             cbar.set_label("Cumulative probability", rotation=270, labelpad = 20,
-                           FontProperties = prop, color = '#4d4d4d', fontsize = 14)
+                            color = '#4d4d4d', fontsize = 14)
     else:
         raise ValueError("Plot method should be either '2d' or '3d'")
 
     if title is None:
         ax.set_title(f"Figure of a copula ({type_copula})", 
-                     FontProperties = prop, fontsize = 16)
+                      fontsize = 16)
     else:
-        ax.set_title(title, FontProperties = prop, fontsize = 14)
-    ax.set_xlabel(x_name, FontProperties = prop, color = '#4d4d4d', fontsize = 14)
-    ax.set_ylabel(y_name, FontProperties = prop, color = '#4d4d4d', fontsize = 14)
-    #ax.set_xticklabels((), FontProperties = prop, color = '#4d4d4d', fontsize = 14)
+        ax.set_title(title,  fontsize = 14)
+    ax.set_xlabel(x_name,  color = '#4d4d4d', fontsize = 14)
+    ax.set_ylabel(y_name,  color = '#4d4d4d', fontsize = 14)
+    #ax.set_xticklabels((),  color = '#4d4d4d', fontsize = 14)
     ax.tick_params(axis='both', which='major',color = '#4d4d4d')
     
     if save_fig:
@@ -332,24 +325,24 @@ def different_cop_video(x, y, level,
                     ax = fig.add_subplot(111, projection='3d')
                     if title is None:
                         ax.set_title(f"Figure of a copula ({type_copula})", 
-                                     FontProperties = prop, fontsize = 16)
+                                      fontsize = 16)
                     else:
-                        ax.set_title(title, FontProperties = prop, fontsize = 14)
-                        ax.set_xlabel(x_name, FontProperties = prop, color = '#4d4d4d', fontsize = 14)
-                        ax.set_ylabel(y_name, FontProperties = prop, color = '#4d4d4d', fontsize = 14)
-                        #ax.set_xticklabels((), FontProperties = prop, color = '#4d4d4d', fontsize = 14)
+                        ax.set_title(title,  fontsize = 14)
+                        ax.set_xlabel(x_name,  color = '#4d4d4d', fontsize = 14)
+                        ax.set_ylabel(y_name,  color = '#4d4d4d', fontsize = 14)
+                        #ax.set_xticklabels((),  color = '#4d4d4d', fontsize = 14)
                         ax.tick_params(axis='both', which='major',color = '#4d4d4d')
 
                     
                     level[level > zclip] = zclip
                     ax.plot_surface(x,y,level,cmap=cm.coolwarm)
                     #plt.tight_layout()
-                    #ax.set_zticklabels((), FontProperties = prop, color = '#4d4d4d', fontsize = 14)
+                    #ax.set_zticklabels((),  color = '#4d4d4d', fontsize = 14)
                     if type_copula.lower() == "pdf":
                         ax.set_zlim(0,zclip)
-                        ax.set_zlabel("Probability (p)", FontProperties = prop, color = '#4d4d4d', fontsize = 14)
+                        ax.set_zlabel("Probability (p)",  color = '#4d4d4d', fontsize = 14)
                     elif type_copula.lower() == "cdf":
-                        ax.set_zlabel("Cumulative probability", FontProperties = prop, color = '#4d4d4d', fontsize = 14)
+                        ax.set_zlabel("Cumulative probability",  color = '#4d4d4d', fontsize = 14)
                     ax.w_zaxis.set_pane_color((250/255, 250/255, 250/255))
                     ax.w_yaxis.set_pane_color((225/255, 225/255, 225/255))
                     ax.w_xaxis.set_pane_color((190/255, 190/255, 190/255))
@@ -376,10 +369,10 @@ def different_cop_video(x, y, level,
         
                 if type_copula.lower() == "pdf":
                     cbar.set_label("Probability (p)", rotation=270, labelpad = 20,
-                                   FontProperties = prop, color = '#4d4d4d', fontsize = 14)
+                                    color = '#4d4d4d', fontsize = 14)
                 elif type_copula.lower() == "cdf":
                     cbar.set_label("Cumulative probability", rotation=270, labelpad = 20,
-                                   FontProperties = prop, color = '#4d4d4d', fontsize = 14)
+                                    color = '#4d4d4d', fontsize = 14)
             else:
                 raise ValueError("Plot method should be either '2d' or '3d'")
         
@@ -433,7 +426,7 @@ def corr_diag(data, method='square', enrc = False, fontsize='medium', order=Fals
                 enrcmatrix[var1][var2] = enrc
         cp.df = enrcmatrix
     cp.plot(method=method, fontsize=fontsize, order=order)
-    plt.title(title, FontProperties = prop,fontsize = 20)
+    plt.title(title, fontsize = 20)
     if save_fig:
         plt.savefig(save_path, dpi=200, bbox_inches = "tight")
         
@@ -559,11 +552,11 @@ def pred_target(pred, target,
     
     ax = plt.subplot(111)
     simpleaxis(ax)
-    plt.xlabel(xlabel, FontProperties = prop, color = '#4d4d4d', fontsize = 15)
-    plt.ylabel(data_name, FontProperties = prop, color = '#4d4d4d', fontsize = 15)
-    plt.xticks(FontProperties = prop, color = '#4d4d4d', fontsize = 15)
-    plt.yticks(FontProperties = prop, color = '#4d4d4d', fontsize = 15)
-    plt.title(title, FontProperties = prop, fontsize = 18)
+    plt.xlabel(xlabel,  color = '#4d4d4d', fontsize = 15)
+    plt.ylabel(data_name,  color = '#4d4d4d', fontsize = 15)
+    plt.xticks( color = '#4d4d4d', fontsize = 15)
+    plt.yticks( color = '#4d4d4d', fontsize = 15)
+    plt.title(title,  fontsize = 18)
     #plt.axhline(0, color = 'grey')
     plt.ylim(0,15)
     
