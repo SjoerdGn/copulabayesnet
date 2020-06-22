@@ -11,7 +11,6 @@ import pandas as pd
 import numpy as np
 #import datetime as dt
 import json
-import dataprofeet.read.readKNMIdata as readKNMI
 from scipy.stats import zscore
 
 class DataPreProc:
@@ -195,31 +194,31 @@ class DataPreProc:
             
       
             
-    def _get_knmi_file(self, path, parameters):
-        """Load KNMI data with readKNMI.readKNMMIuurgeg
+    # def _get_knmi_file(self, path, parameters):
+    #     """Load KNMI data with readKNMI.readKNMMIuurgeg
         
-        Parameters
-        ----------
-        path : str
-            Path of the file
+    #     Parameters
+    #     ----------
+    #     path : str
+    #         Path of the file
             
-        parameters : list of str or None (optional)
-            What parameters to load. When None, loads all.
+    #     parameters : list of str or None (optional)
+    #         What parameters to load. When None, loads all.
             
-        Returns 
-        -------
-        new_data : pandas.DataFrame
-            KNMI data in pandas dataframe
-        """
-        if parameters is None:
-             parameters = ["DD",   "FH",   "FF",   "FX",    "T",  
-                           "T10",   "TD",   "SQ",    "Q",   "DR",   
-                           "RH",    "P",   "VV",    "N",    "U",   
-                           "WW",   "IX",    "M",    "R",    "S",    
-                           "O",    "Y"]
-        print(path)
-        new_data = readKNMI.readKNMIuurgeg(path, parameters)
-        return new_data
+    #     Returns 
+    #     -------
+    #     new_data : pandas.DataFrame
+    #         KNMI data in pandas dataframe
+    #     """
+    #     if parameters is None:
+    #          parameters = ["DD",   "FH",   "FF",   "FX",    "T",  
+    #                        "T10",   "TD",   "SQ",    "Q",   "DR",   
+    #                        "RH",    "P",   "VV",    "N",    "U",   
+    #                        "WW",   "IX",    "M",    "R",    "S",    
+    #                        "O",    "Y"]
+    #     print(path)
+    #     new_data = readKNMI.readKNMIuurgeg(path, parameters)
+    #     return new_data
     
     def combine_knmi_decades(self, new_name=None, name_list=None):
         """Combine multiple decades of KNMI data 
