@@ -27,23 +27,4 @@ python setup.py install
 
 ## Gaussian copula
 
-$$c_R^{\text{Ga}}(u)
-= \frac{1}{\sqrt{|{R}|}}\exp\left(-\frac{1}{2}
-\begin{pmatrix}\Phi^{-1}(u_1)\\ \vdots \\ \Phi^{-1}(u_d)\end{pmatrix}^T \cdot
-\left(R^{-1}-I\right) \cdot
-\begin{pmatrix}\Phi^{-1}(u_1)\\ \vdots \\ \Phi^{-1}(u_d)\end{pmatrix}
-\right),$$
-
-
-## Diagram
-
-Flow chart
-
-```mermaid
-graph TB
-A[Copula type] --> B((Gaussian))
-A --> C((Archimedean))
-B --> D{Bayesian network}
-C --> E{Testing fit}
-B --> E
-```
+https://latex.codecogs.com/gif.download?c_R%5E%7B%5Ctext%7BGa%7D%7D%28u%29%20%3D%20%5Cfrac%7B1%7D%7B%5Csqrt%7B%7C%7BR%7D%7C%7D%7D%5Cexp%5Cleft%28-%5Cfrac%7B1%7D%7B2%7D%20%5Cbegin%7Bpmatrix%7D%5CPhi%5E%7B-1%7D%28u_1%29%5C%5C%20%5Cvdots%20%5C%5C%20%5CPhi%5E%7B-1%7D%28u_d%29%5Cend%7Bpmatrix%7D%5ET%20%5Ccdot%20%5Cleft%28R%5E%7B-1%7D-I%5Cright%29%20%5Ccdot%20%5Cbegin%7Bpmatrix%7D%5CPhi%5E%7B-1%7D%28u_1%29%5C%5C%20%5Cvdots%20%5C%5C%20%5CPhi%5E%7B-1%7D%28u_d%29%5Cend%7Bpmatrix%7D%20%5Cright%29%2C
