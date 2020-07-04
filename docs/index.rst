@@ -3,16 +3,18 @@ Documentation copulabayesnet
 
 Introduction
 ============
-copulabayesnet is a Python package with several copula and Bayesian network test and model methods.:
+copulabayesnet is a Python package with several copula and Bayesian network test and model methods.
 
-    pip install copulabayesnet
+.. code:: console
+
+    $ pip install copulabayesnet
 
 
 Guide
 ^^^^^
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Guide:
 
    modules
