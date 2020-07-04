@@ -12,9 +12,10 @@ Guide
 ^^^^^
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Guide:
 
+   modules
    license
    help
 

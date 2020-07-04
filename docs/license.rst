@@ -1,4 +1,4 @@
-license
+License
 =======
 
 Copyright (c) 2020 Sjoerd Gnodde
