@@ -11,7 +11,9 @@ requirements = ['numpy>=1.16.0',
                 'scikit-gof',
                 'hydroeval',
                 #'biokit', biokit does not work right now
-                'easygui'
+                'easygui',
+                'msmb_theme',
+                'sphinx_rtd_theme'
                 ]
 
 setup(name='copulabayesnet',
