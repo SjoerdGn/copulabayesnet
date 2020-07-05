@@ -22,3 +22,14 @@ formats:
 #  version: 3.7
 #  install:
 #    - requirements: docs/requirements.txt
+
+python:
+   version: 3.7
+   install:
+      - method: pip
+        path: .
+        extra_requirements:
+           - msmb_theme
+           - sphinx_rtd_theme
+      - method: setuptools
+        path: package
