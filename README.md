@@ -8,7 +8,7 @@
 
 ## Documentation
 
-![Online documentation](https://copulabayesnet.readthedocs.io/en/latest/)
+[Online documentation](https://copulabayesnet.readthedocs.io/en/latest/ "ReadTheDocs copulabayesnet")
 
 ## Installation
 Install basic
