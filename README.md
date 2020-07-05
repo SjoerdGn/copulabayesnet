@@ -6,6 +6,10 @@
 * Predict from multivariate normal copulas
 * Generate several useful plots
 
+## Documentation
+
+![Online documentation](https://copulabayesnet.readthedocs.io/en/latest/)
+
 ## Installation
 Install basic
 
