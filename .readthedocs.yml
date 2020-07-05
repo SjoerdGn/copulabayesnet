@@ -32,4 +32,4 @@ python:
            - msmb_theme
            - sphinx_rtd_theme
       - method: setuptools
-        path: package
+        path: .
