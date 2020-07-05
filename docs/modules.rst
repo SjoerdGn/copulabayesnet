@@ -1,12 +1,7 @@
-Modules
-=======
+copulabayesnet
+==============
 
-bncopula
-^^^^^^^^
+.. toctree::
+   :maxdepth: 4
 
-Calculation core, copulas and BNs.
-
-cop_plot
-^^^^^^^^
-
-Plot copula related stuff. 
+   copulabayesnet

@@ -17,7 +17,7 @@ Guide
    :maxdepth: 2
    :caption: Guide:
 
-   modules
+   copulabayesnet
    license
    help
 
