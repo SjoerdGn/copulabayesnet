@@ -102,6 +102,6 @@ html_static_path = ['_static']
 # 'searchbox.html']``.
 #
 # html_sidebars = {}
-html_theme = 'sphinx_rtd_theme' #'msmb_theme'
-#import msmb_theme
-#html_theme_path = [msmb_theme.get_html_theme_path()]
+html_theme = 'msmb_theme'
+import msmb_theme
+html_theme_path = [msmb_theme.get_html_theme_path()]
