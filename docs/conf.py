@@ -103,5 +103,5 @@ html_static_path = ['_static']
 #
 # html_sidebars = {}
 html_theme = 'sphinx_rtd_theme' #'msmb_theme'
-import msmb_theme
-html_theme_path = [msmb_theme.get_html_theme_path()]
+#import msmb_theme
+#html_theme_path = [msmb_theme.get_html_theme_path()]
