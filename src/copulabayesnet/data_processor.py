@@ -520,7 +520,7 @@ class DataProc:
     
             
     def to_array(self, name=None):
-        """ Return a certain DataFrame as an array
+        """Return a certain DataFrame as an array.
         
         Parameters
         ----------
@@ -529,7 +529,7 @@ class DataProc:
             
         Returns
         -------
-        array_ : numpy.ndarray
+        array_data : numpy.ndarray
             The numpy.ndarray of the data
         """
         data_dict = self.data_dict
@@ -538,9 +538,9 @@ class DataProc:
                                               choices=[item for item in self.data_dict])
             
         data = data_dict[name]
-        array_ = data.to_numpy()
+        array_data = data.to_numpy()
         
-        return array_
+        return array_data
     
 
     
