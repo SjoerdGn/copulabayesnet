@@ -6,6 +6,7 @@ readme = io.open('README.md', encoding='utf-8').read()
 requirements = ['numpy>=1.16.0',
                 'pycopula',
                 'scipy',
+                'scipy.stats', #added recently
                 'statsmodels',
                 'matplotlib',
                 'scikit-gof',
