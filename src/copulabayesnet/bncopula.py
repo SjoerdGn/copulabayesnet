@@ -2850,10 +2850,6 @@ class MultVarNorm:
 
     
 class Predict:
-    
-    # I cannot let this class inherit the copulas because some functions
-    # have the same name
-    
     """Make a prediction from the data and test it.
     
     ...
