@@ -2854,9 +2854,7 @@ class Predict:
     # I cannot let this class inherit the copulas because some functions
     # have the same name
     
-    """
-    
-    Make a prediction from the data and test it
+    """Make a prediction from the data and test it.
     
     ...
     
@@ -2868,8 +2866,6 @@ class Predict:
     
     pred_axes : int
         Which axes to predict
-        
-        
         
     train_data : numpy.array
         Training set. The same as `data`, except when train_test_set is run.
@@ -3156,7 +3152,19 @@ class Predict:
     def kge(self):
         """Kling-Gupta Efficiency. Prediction data should be in class. 
         
-        kge_, r, alpha, beta
+        Returns
+        -------
+        kge_ : numpy.array
+            The coefficient.
+        
+        r : numpy.array
+            r factor KGE
+        
+        alpha : numpy.array
+            Alpha factor KGE
+        
+        beta : numpy.array
+            Beta factor KGE
         """
         kge_ = np.zeros((len(self.prediction),4))
         for i in range(len(self.prediction)):
@@ -3193,7 +3201,7 @@ class Predict:
             boolind = indices == i
             self.train_data = self.data[:, ~boolind]
             self.test_data = self.data[:, boolind]
-            self.bn_ecdf(R, value_params = value_params, n=n, 
+            self.bn_ecdf(self.R, value_params = value_params, n=n, 
                                    conf_int = conf_int,
                                    exp_meth = exp_meth)
             nses.append(self.nse())
