@@ -43,12 +43,3 @@ copulabayesnet.spatial\_tools module
     :members:
     :undoc-members:
     :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: copulabayesnet
-    :members:
-    :undoc-members:
-    :show-inheritance:
