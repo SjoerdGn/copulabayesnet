@@ -3154,7 +3154,7 @@ class Predict:
         
         Returns
         -------
-        kge_ : numpy.array
+        kge_val : numpy.array
             The coefficient.
         
         r : numpy.array
@@ -3166,17 +3166,17 @@ class Predict:
         beta : numpy.array
             Beta factor KGE
         """
-        kge_ = np.zeros((len(self.prediction),4))
+        kge_val = np.zeros((len(self.prediction),4))
         for i in range(len(self.prediction)):
             try: 
                 kge_array = he.kge(self.prediction[i], self.target[i]).T
-                kge_[i] = kge_array
+                kge_val[i] = kge_array
             except NameError:
                 print("Prediction or target not defined")
                 
-        if len(kge_)==1:
-            kge_ = kge_[0]
-        return kge_
+        if len(kge_val)==1:
+            kge_val = kge_val[0]
+        return kge_val
     
      
         
