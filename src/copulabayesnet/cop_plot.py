@@ -33,8 +33,7 @@ def cop_2_param(Copula2d,
                 title = None,                
                 save_fig=False, 
                 save_path='pred_target.png'):
-    """Plots a 2-parameter copula, either on a 2d or 3d plane, 
-    either the pdf or the cdf.
+    """Plots a 2-parameter copula, either on a 2d or 3d plane, either the pdf or the cdf.
     
     Parameters
     ----------
@@ -151,8 +150,7 @@ def different_cop(x, y, level,
                 title = None,                
                 save_fig=False, 
                 save_path='pred_target.png'):
-    """Plots any 2-parameter copula, either on a 2d or 3d plane, 
-    either the pdf or the cdf. 
+    """Plots any 2-parameter copula, either on a 2d or 3d plane, either the pdf or the cdf. 
     
     Parameters
     ----------
@@ -572,8 +570,7 @@ def cumulative_plot(data_dict,
                     save_fig = False,
                     save_path = "../../figures/cumulative.png"):
     
-    """
-    Make a cumulative plot of for example the precipitation
+    """Make a cumulative plot of for example the precipitation.
     
     Parameters
     ----------
@@ -638,7 +635,7 @@ def double_hist(data_uncond, data_cond,
                 bins = 16,
                 save_fig = False,
                 save_path = "../../figures/double_hist.png"):
-    """Make a histogram of data and conditionalized expectation
+    """Make a histogram of data and conditionalized expectation.
     
     Parameters
     ----------
