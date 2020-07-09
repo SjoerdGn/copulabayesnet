@@ -8,9 +8,7 @@ copulabayesnet.bncopula module
 ------------------------------
 
 .. automodule:: copulabayesnet.bncopula
-    :members:
-    :undoc-members:
-    :show-inheritance:
+
 
 copulabayesnet.cop\_plot module
 -------------------------------

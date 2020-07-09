@@ -16,35 +16,55 @@ in the pycopula module
     
 A small part of the code is based upon https://github.com/blent-ai/pycopula
      
-BNCopula
-====
+
 Goodness-of-fit modules
-^^^^^^^^^^^^^^^^^^^^^^^
+=======================
 
 
 .. autoclass:: Gof1d
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 .. autoclass:: Gof2d
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 .. autoclass:: GofNd
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 Copulas modules
-^^^^^^^^^^^^^^^
+===============
 
 .. autoclass:: Copula2d
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 .. autoclass:: CopulaNd
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 
 Multivariate normal method
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+==========================
 
 .. autoclass:: MultVarNorm
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 Make a prediction
-^^^^^^^^^^^^^^^^^
+=================
 
 .. autoclass:: Predict
+    :members:
+    :undoc-members:
+    :show-inheritance:
 """
 from scipy import interpolate
 from mpl_toolkits.mplot3d.axes3d import Axes3D
