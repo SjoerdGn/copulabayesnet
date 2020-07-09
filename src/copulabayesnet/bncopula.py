@@ -5,18 +5,46 @@ Created on Mon Nov  4 15:26:59 2019
 @author: Sjoerd Gnodde
 
 
-
-Needed modules: statsmodels, pycopula, scipy, numpy
+Required modules: statsmodels, pycopula, scipy, numpy
 
 
 Note: change d = copula.getDimension() to d = copula.dimension() and 
-    Sigma = copula.getCovariance() to Sigma = copula.get_corr() in simulation 
-    in the pycopula module
+Sigma = copula.getCovariance() to Sigma = copula.get_corr() in simulation 
+in the pycopula module
      
     
     
-A small part of the code is copied from https://github.com/blent-ai/pycopula
+A small part of the code is based upon https://github.com/blent-ai/pycopula
      
+BNCopula
+====
+Goodness-of-fit modules
+^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. autoclass:: Gof1d
+
+.. autoclass:: Gof2d
+
+.. autoclass:: GofNd
+
+Copulas modules
+^^^^^^^^^^^^^^^
+
+.. autoclass:: Copula2d
+
+.. autoclass:: CopulaNd
+
+
+Multivariate normal method
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: MultVarNorm
+
+Make a prediction
+^^^^^^^^^^^^^^^^^
+
+.. autoclass:: Predict
 """
 from scipy import interpolate
 from mpl_toolkits.mplot3d.axes3d import Axes3D
@@ -48,6 +76,7 @@ from copulabayesnet import cop_plot as cp
 from scipy.stats import multivariate_normal as mvn
 from scipy.linalg import cholesky
 from scipy.optimize import curve_fit
+
         
 class Gof1d:
     
