@@ -19,9 +19,9 @@ Functionalities
 
 Examples
 ^^^^^^^^
-See https://github.com/SjoerdGn/copulabayesnet/tree/master/examples
+Some examples can be found in `examples`_.
 
-Examples in RTD follow later. 
+See also https://github.com/SjoerdGn/copulabayesnet/tree/master/examples
 
 Contents
 =======
@@ -30,6 +30,7 @@ Contents
    :maxdepth: 3
 
    copulabayesnet
+   examples
    license
    help
 
