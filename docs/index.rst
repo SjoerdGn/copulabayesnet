@@ -19,7 +19,7 @@ Functionalities
 
 Examples
 ^^^^^^^^
-Some examples can be found in `examples`_.
+Some examples can be found in :ref:`the-examples`..
 
 See also https://github.com/SjoerdGn/copulabayesnet/tree/master/examples
 

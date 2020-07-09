@@ -1,3 +1,5 @@
+.. _the-examples:
+
 Examples
 ========
 
@@ -14,7 +16,7 @@ Load the package
   from copulabayesnet.data_preprocessor import CorrMatrix
 
 
-Load dataset. In this case, the standard diabetes dataset of `sklearn <http://www.python.org/>`_ is used.
+Load dataset. In this case, the standard diabetes dataset of `sklearn <https://scikit-learn.org/stable/>`_ is used.
 ::
 
   from sklearn.datasets import load_diabetes
