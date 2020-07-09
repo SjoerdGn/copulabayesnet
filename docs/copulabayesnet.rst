@@ -1,41 +1,36 @@
-copulabayesnet package
-======================
-
-Submodules
-----------
-
-copulabayesnet.bncopula module
-------------------------------
+bncopula
+========
 
 .. automodule:: copulabayesnet.bncopula
 
 
-copulabayesnet.cop\_plot module
--------------------------------
+cop\_plot
+=========
+
 
 .. automodule:: copulabayesnet.cop_plot
     :members:
     :undoc-members:
     :show-inheritance:
 
-copulabayesnet.data\_preprocessor module
-----------------------------------------
+data\_preprocessor
+==================
 
 .. automodule:: copulabayesnet.data_preprocessor
     :members:
     :undoc-members:
     :show-inheritance:
 
-copulabayesnet.data\_processor module
--------------------------------------
+data\_processor
+===============
 
 .. automodule:: copulabayesnet.data_processor
     :members:
     :undoc-members:
     :show-inheritance:
 
-copulabayesnet.spatial\_tools module
-------------------------------------
+spatial\_tools
+==============
 
 .. automodule:: copulabayesnet.spatial_tools
     :members:

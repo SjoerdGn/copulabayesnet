@@ -20,29 +20,43 @@ A small part of the code is based upon https://github.com/blent-ai/pycopula
 Goodness-of-fit modules
 =======================
 
+Gof1d (one-dimensional)
+-----------------------
 
 .. autoclass:: Gof1d
     :members:
     :undoc-members:
     :show-inheritance:
+        
+Gof2d (two-dimensional)
+-----------------------
 
 .. autoclass:: Gof2d
     :members:
     :undoc-members:
     :show-inheritance:
+        
+GofNd (multidimensional)
+------------------------
 
 .. autoclass:: GofNd
     :members:
     :undoc-members:
     :show-inheritance:
 
-Copulas modules
-===============
+Copula modules
+==============
+
+Copula2d (two-dimensional)
+--------------------------
 
 .. autoclass:: Copula2d
     :members:
     :undoc-members:
     :show-inheritance:
+        
+CopulaNd (multidimensional)
+---------------------------
 
 .. autoclass:: CopulaNd
     :members:
