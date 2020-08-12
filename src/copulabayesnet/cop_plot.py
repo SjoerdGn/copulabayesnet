@@ -554,7 +554,7 @@ def pred_target(pred, target,
     plt.yticks( color = '#4d4d4d', fontsize = 15)
     plt.title(title,  fontsize = 18)
     #plt.axhline(0, color = 'grey')
-    plt.ylim(0,15)
+    #plt.ylim(0,15)
     
     
     
