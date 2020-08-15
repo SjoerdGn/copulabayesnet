@@ -3139,7 +3139,8 @@ class Predict:
         if fit_func.lower() in ['sigmoid', 'logistic']:
             mvn.fit_sigmoid(parlen = numpars, numvals = numvals, 
                                  extra_up = extra_up, extra_down=extra_down, 
-                                 maxfev = maxfev)
+                                 maxfev = maxfev, mid = mid, 
+                                 f = f)
         elif fit_func.lower() in ['mixed gauss', 'mixgauss', 'mg', 'mixed gaussian']:
             mvn.fit_mix_gauss(num_gauss = numpars, numvals = numvals, 
                              extra_up = extra_up, extra_down=extra_down, 
