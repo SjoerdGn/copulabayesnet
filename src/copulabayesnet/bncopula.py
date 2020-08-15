@@ -2526,7 +2526,7 @@ class MultVarNorm:
         return R_hat 
     
     
-    def sig_ad(self, x, *a):
+    def sig_ad(self, x, *a, f = 0, mid = 0.5):
         """Run Sigmoid function.
         
         Defined as ...
@@ -2546,7 +2546,9 @@ class MultVarNorm:
         """
         poly = [a[i+3]*(x-a[2])**(2*i+1) for i in range(len(a)-3)]
         P = np.sum(poly, 0)
-        return 1/(1+np.exp((P-a[0])*a[1])) 
+        valssum =  1/(1+np.exp((P-a[0])*a[1])) 
+        valssum = self.stretchify(valssum, f, mid = mid)
+        return valssum
     
     def stretchify(self, x,f, mid):
         """Stretch the distribution at the end.
@@ -2599,6 +2601,8 @@ class MultVarNorm:
                   parlen = 6,
                   extra_up = 0.2, 
                   extra_down = 0.2,
+                  f = 0,
+                  mid = 0.5,
                   numvals = 100000,
                   maxfev = 100000):
         """Fit the ECDFS of the sigmoid method.
@@ -2658,17 +2662,17 @@ class MultVarNorm:
                 popt = None
                 self.fit_params.append(None)
                 print("It didn't work for this parameter")
-            
-            # plt.figure()
-            # plt.plot(ecdf.x, ecdf.y)
-            # plt.plot(x, self.sig_ad(x, *p0))
+
         
-            
+            if isinstance(mid, list) or isinstance(mid, np.ndarray):
+                md = mid[i]
+            else:
+                md = mid
+            interpol = self._inter_funcs(self.sig_ad, *tuple(popt),f=f,mid = md,
+                                         numvals = numvals, minval = minval, maxval = maxval)    
             interpol = self._inter_funcs(self.sig_ad, *tuple(popt),
                                          numvals = numvals, minval = minval, maxval = maxval)
-            # plt.figure()
-            # plt.plot(ecdf.x, ecdf.y)
-            # plt.plot(ecdf.x, self.sig_ad(ecdf.x, *tuple(popt)))
+
             self.interpols.append(interpol)
             
     def fit_mix_gauss(self, num_gauss = 3, numvals = 100000,
