@@ -2548,6 +2548,8 @@ class MultVarNorm:
         P = np.sum(poly, 0)
         valssum =  1/(1+np.exp((P-a[0])*a[1])) 
         valssum = self.stretchify(valssum, f, mid = mid)
+        print(len(valssum))
+
         return valssum
     
     def stretchify(self, x,f, mid):
@@ -2583,6 +2585,7 @@ class MultVarNorm:
             par = params[i]
             vals.append(par[2]*norm.cdf(X, loc = par[0], scale = par[1]))
         valssum = np.sum(vals, 0)/np.sum(params, 0)[2]
+        print(len(valssum))
         valssum = self.stretchify(valssum, f, mid = mid)
         return valssum
     
@@ -2668,10 +2671,9 @@ class MultVarNorm:
                 md = mid[i]
             else:
                 md = mid
+                
             interpol = self._inter_funcs(self.sig_ad, *tuple(popt),f=f,mid = md,
                                          numvals = numvals, minval = minval, maxval = maxval)    
-            interpol = self._inter_funcs(self.sig_ad, *tuple(popt),
-                                         numvals = numvals, minval = minval, maxval = maxval)
 
             self.interpols.append(interpol)
             
@@ -2720,16 +2722,6 @@ class MultVarNorm:
             #print(p0)
             p0s.append(p0)
             
-#            plt.figure()
-#            plt.hist(ecdf.x[1:], density=True)
-#            self._mult_gauss_mixt_pdf_plot(ecdf.x[1:], *p0)
-            # bounds = (tuple([
-            #         minval if j%3 == 0
-            #         else 0.05 for i in range(num_gauss) for j in range(3)]), #TODO Check if changed worked!
-            #         tuple([maxval if j%3 == 0
-            #         else np.inf for i in range(num_gauss) for j in range(3)])
-            #         )
-            #TODO did it work
             bounds = (tuple([
                     minval if j%3 == 0
                     else rangeval/100 
@@ -2743,17 +2735,9 @@ class MultVarNorm:
                                        ecdf.y[1:], p0 = p0,
                                        maxfev = maxfev,
                                        bounds=bounds, verbose=verbose)
-#            plt.figure()
-#            plt.plot(ecdf.x, ecdf.y)
-#            plt.plot(ecdf.x, self.mult_gauss_mixt_cdf(ecdf.x, *tuple(best_params)))
-            #print(best_params)
+
             self.fit_params.append(best_params)
             
-            # if i != 1:
-            #     g = 0
-            # else:
-            #     g = f
-            #if 
             if isinstance(mid, list) or isinstance(mid, np.ndarray):
                 md = mid[i]
             else:
@@ -2761,13 +2745,13 @@ class MultVarNorm:
             interpol = self._inter_funcs(self.mult_gauss_mixt_cdf, *tuple(best_params),f=f,mid = md,
                                          numvals = numvals, minval = minval, maxval = maxval)
             self.interpols.append(interpol)
-            #print(f"Parameter {i} succeeded!")
         return p0s    
 
     def _inter_funcs(self, function, *other_params, f = 0, numvals = 1000000, minval = 0, maxval = 100, mid = 0.5):
         xvals = np.linspace(minval, maxval, numvals)
         yvals = function(xvals, *other_params, f = f, mid = mid)
-        return interpolate.interp1d(yvals, xvals, fill_value="extrapolate")    
+        interp_result = interpolate.interp1d(yvals, xvals, fill_value="extrapolate")  
+        return interp_result
 
     def cond_sample(self, values, value_params, expect_params, fit_func = 'sigmoid',
                         n=500, 
