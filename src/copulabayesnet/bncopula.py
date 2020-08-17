@@ -2526,7 +2526,7 @@ class MultVarNorm:
         return R_hat 
     
     
-    def sig_ad(self, x, *a):
+    def sig_ad(self, x, *a, f = 0, mid = 0.5):
         """Run Sigmoid function.
         
         Defined as ...
@@ -2546,7 +2546,9 @@ class MultVarNorm:
         """
         poly = [a[i+3]*(x-a[2])**(2*i+1) for i in range(len(a)-3)]
         P = np.sum(poly, 0)
-        return 1/(1+np.exp((P-a[0])*a[1])) 
+        valssum =  1/(1+np.exp((P-a[0])*a[1])) 
+        valssum = self.stretchify(valssum, f, mid = mid)
+        return valssum
     
     def stretchify(self, x,f, mid):
         """Stretch the distribution at the end.
@@ -2599,8 +2601,11 @@ class MultVarNorm:
                   parlen = 6,
                   extra_up = 0.2, 
                   extra_down = 0.2,
+                  f = 0,
+                  mid = 0.5,
                   numvals = 100000,
-                  maxfev = 100000):
+                  maxfev = 100000,
+                  raise_error_fit = True):
         """Fit the ECDFS of the sigmoid method.
         
         Fit a sigmoid function to the data
@@ -2615,6 +2620,8 @@ class MultVarNorm:
             DESCRIPTION. The default is ((-np.inf, 0, -np.inf, -np.inf, -np.inf, -np.inf),(np.inf, np.inf, np.inf, 0, 0, 0)).
         numvals : int, optional
             Numver of values for the interpolate formula. Default value is 100000.
+        raise_error_fit : bool, optional
+            Whether or not to raise an error if fit did not work. 
 
         Returns
         -------
@@ -2624,8 +2631,7 @@ class MultVarNorm:
         """
         self.fit_params = []
         self.interpols = []
-        
-        
+
         
         for ecdf in self.ecdfs:
             x = ecdf.x[1:]
@@ -2640,7 +2646,10 @@ class MultVarNorm:
             if parlen > 6:
                 raise ValueError("[!] parlen could be 6 at max")
             else:
-                if parlen < 6:
+                if parlen < 4:
+                    raise ValueError("[!] parlen for sigmoid should be at least 4")
+                
+                elif parlen < 6:
                     p0 = tuple(list(p0)[:parlen])
                     boundslist = list(bounds)
                     boundsnew = []
@@ -2657,18 +2666,21 @@ class MultVarNorm:
             except:
                 popt = None
                 self.fit_params.append(None)
-                print("It didn't work for this parameter")
-            
-            # plt.figure()
-            # plt.plot(ecdf.x, ecdf.y)
-            # plt.plot(x, self.sig_ad(x, *p0))
+                if raise_error_fit:
+                    raise NotImplementedError("The sigmoid function was not able to fit this variable.")
+                else:
+                    print("It didn't work for this variable.")
+                
+
         
-            
-            interpol = self._inter_funcs(self.sig_ad, *tuple(popt),
-                                         numvals = numvals, minval = minval, maxval = maxval)
-            # plt.figure()
-            # plt.plot(ecdf.x, ecdf.y)
-            # plt.plot(ecdf.x, self.sig_ad(ecdf.x, *tuple(popt)))
+            if isinstance(mid, list) or isinstance(mid, np.ndarray):
+                md = mid[i]
+            else:
+                md = mid
+                
+            interpol = self._inter_funcs(self.sig_ad, *tuple(popt),f=f,mid = md,
+                                         numvals = numvals, minval = minval, maxval = maxval)    
+
             self.interpols.append(interpol)
             
     def fit_mix_gauss(self, num_gauss = 3, numvals = 100000,
@@ -2716,16 +2728,6 @@ class MultVarNorm:
             #print(p0)
             p0s.append(p0)
             
-#            plt.figure()
-#            plt.hist(ecdf.x[1:], density=True)
-#            self._mult_gauss_mixt_pdf_plot(ecdf.x[1:], *p0)
-            # bounds = (tuple([
-            #         minval if j%3 == 0
-            #         else 0.05 for i in range(num_gauss) for j in range(3)]), #TODO Check if changed worked!
-            #         tuple([maxval if j%3 == 0
-            #         else np.inf for i in range(num_gauss) for j in range(3)])
-            #         )
-            #TODO did it work
             bounds = (tuple([
                     minval if j%3 == 0
                     else rangeval/100 
@@ -2739,17 +2741,9 @@ class MultVarNorm:
                                        ecdf.y[1:], p0 = p0,
                                        maxfev = maxfev,
                                        bounds=bounds, verbose=verbose)
-#            plt.figure()
-#            plt.plot(ecdf.x, ecdf.y)
-#            plt.plot(ecdf.x, self.mult_gauss_mixt_cdf(ecdf.x, *tuple(best_params)))
-            #print(best_params)
+
             self.fit_params.append(best_params)
             
-            # if i != 1:
-            #     g = 0
-            # else:
-            #     g = f
-            #if 
             if isinstance(mid, list) or isinstance(mid, np.ndarray):
                 md = mid[i]
             else:
@@ -2757,13 +2751,13 @@ class MultVarNorm:
             interpol = self._inter_funcs(self.mult_gauss_mixt_cdf, *tuple(best_params),f=f,mid = md,
                                          numvals = numvals, minval = minval, maxval = maxval)
             self.interpols.append(interpol)
-            #print(f"Parameter {i} succeeded!")
         return p0s    
 
     def _inter_funcs(self, function, *other_params, f = 0, numvals = 1000000, minval = 0, maxval = 100, mid = 0.5):
         xvals = np.linspace(minval, maxval, numvals)
         yvals = function(xvals, *other_params, f = f, mid = mid)
-        return interpolate.interp1d(yvals, xvals, fill_value="extrapolate")    
+        interp_result = interpolate.interp1d(yvals, xvals, fill_value="extrapolate")  
+        return interp_result
 
     def cond_sample(self, values, value_params, expect_params, fit_func = 'sigmoid',
                         n=500, 
