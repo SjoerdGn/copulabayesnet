@@ -40,5 +40,5 @@ pd_data = pd_data.rename(columns = {'S&P':'SP'})
 
 cm = CorrMatrix("../examples/example_matrix_stock.txt")
 pred = bc.Predict(pd_data.values.T, [0], R = cm.R)
-res1 = pred.bn(fit_func = 'logistic', n = 500, numpars = 6, conf_int = 0.9)
+res1 = pred.bn(fit_func = 'logistic', n = 500, numpars = 4, conf_int = 0.9)
 print("NSE = ",pred.nse())

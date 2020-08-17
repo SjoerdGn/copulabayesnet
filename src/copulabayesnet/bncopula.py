@@ -2548,8 +2548,6 @@ class MultVarNorm:
         P = np.sum(poly, 0)
         valssum =  1/(1+np.exp((P-a[0])*a[1])) 
         valssum = self.stretchify(valssum, f, mid = mid)
-        print(len(valssum))
-
         return valssum
     
     def stretchify(self, x,f, mid):
@@ -2585,7 +2583,6 @@ class MultVarNorm:
             par = params[i]
             vals.append(par[2]*norm.cdf(X, loc = par[0], scale = par[1]))
         valssum = np.sum(vals, 0)/np.sum(params, 0)[2]
-        print(len(valssum))
         valssum = self.stretchify(valssum, f, mid = mid)
         return valssum
     
@@ -2607,7 +2604,8 @@ class MultVarNorm:
                   f = 0,
                   mid = 0.5,
                   numvals = 100000,
-                  maxfev = 100000):
+                  maxfev = 100000,
+                  raise_error_fit = True):
         """Fit the ECDFS of the sigmoid method.
         
         Fit a sigmoid function to the data
@@ -2622,6 +2620,8 @@ class MultVarNorm:
             DESCRIPTION. The default is ((-np.inf, 0, -np.inf, -np.inf, -np.inf, -np.inf),(np.inf, np.inf, np.inf, 0, 0, 0)).
         numvals : int, optional
             Numver of values for the interpolate formula. Default value is 100000.
+        raise_error_fit : bool, optional
+            Whether or not to raise an error if fit did not work. 
 
         Returns
         -------
@@ -2631,8 +2631,7 @@ class MultVarNorm:
         """
         self.fit_params = []
         self.interpols = []
-        
-        
+
         
         for ecdf in self.ecdfs:
             x = ecdf.x[1:]
@@ -2647,7 +2646,10 @@ class MultVarNorm:
             if parlen > 6:
                 raise ValueError("[!] parlen could be 6 at max")
             else:
-                if parlen < 6:
+                if parlen < 4:
+                    raise ValueError("[!] parlen for sigmoid should be at least 4")
+                
+                elif parlen < 6:
                     p0 = tuple(list(p0)[:parlen])
                     boundslist = list(bounds)
                     boundsnew = []
@@ -2664,7 +2666,11 @@ class MultVarNorm:
             except:
                 popt = None
                 self.fit_params.append(None)
-                print("It didn't work for this parameter")
+                if raise_error_fit:
+                    raise NotImplementedError("The sigmoid function was not able to fit this variable.")
+                else:
+                    print("It didn't work for this variable.")
+                
 
         
             if isinstance(mid, list) or isinstance(mid, np.ndarray):
