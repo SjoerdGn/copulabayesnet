@@ -2649,7 +2649,7 @@ class MultVarNorm:
                 if parlen < 4:
                     raise ValueError("[!] parlen for sigmoid should be at least 4")
                 
-                elif parlen =< 6:
+                elif parlen <= 6:
                     p0 = tuple(list(p0)[:parlen])
                     boundslist = list(bounds)
                     boundsnew = []
