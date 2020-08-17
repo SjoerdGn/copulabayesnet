@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 .pypirc
-#bug-fixing/
+bug-fixing/
 
 # Distribution / packaging
 .Python
