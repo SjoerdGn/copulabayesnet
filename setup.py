@@ -13,9 +13,9 @@ requirements = ['numpy>=1.16.0',
                 'scikit-gof',
                 'hydroeval',
                 #'biokit', biokit does not work right now
-                'easygui',
-                'msmb_theme',
-                'sphinx_rtd_theme'
+                'easygui'
+                #'msmb_theme',
+                #'sphinx_rtd_theme'
                 ]
 
 setup(name='copulabayesnet',
@@ -24,7 +24,7 @@ setup(name='copulabayesnet',
       license='MIT',
       url = 'https://github.com/SjoerdGn/copulabayesnet',
       keywords = ['Copulas', 'Bayesian Networks', 'Multivariate normal'],
-      version = '0.1.5',
+      version = '0.1.6',
       description = 'Test different copulas and use multivariate Gaussian copulas',
       long_description = readme,
       install_requires=requirements,
